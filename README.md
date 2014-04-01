@@ -6,6 +6,7 @@ Datepicker using bootstrap 3
 Usage
 -----
 
+```
 <?php $this->widget('ext.datepicker.DatePickerControl', [
     'model' => $model,
     'attribute' => 'birth_date',
@@ -15,5 +16,6 @@ Usage
         'todayBtn' => true,
     ]
 ]); ?>
+```
 
 Have fun!
