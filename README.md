@@ -18,4 +18,9 @@ Usage
 ]); ?>
 ```
 
+Resources
+---------
+
+bootstrap-datepicker Homepage (https://github.com/eternicode/bootstrap-datepicker)
+
 Have fun!
