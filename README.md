@@ -7,7 +7,7 @@ Usage
 -----
 
 ```
-<?php $this->widget('ext.datepicker.DatePickerControl', [
+<?php $this->widget('vendor.ikirux.yii-bootstrap3-datepicker.DatePickerControl', [
     'model' => $model,
     'attribute' => 'birth_date',
     'options' => [
@@ -21,6 +21,6 @@ Usage
 Resources
 ---------
 
-bootstrap-datepicker Homepage (https://github.com/eternicode/bootstrap-datepicker)
+Bootstrap-datepicker's homepage (https://github.com/eternicode/bootstrap-datepicker)
 
 Have fun!
