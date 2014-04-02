@@ -31,10 +31,10 @@ class DatePickerControl extends CInputWidget
 		}
 
 		if (!isset($this->options['format'])) {
-			if (!isset(Yii::app()->params['dateFormat'])) {
+			if (!Yii::app()->locale->dateFormat) {
 				$this->options['format'] = 'yyyy/mm/dd';
 			} else {
-				$this->options['format'] = Yii::app()->params['dateFormat'];
+				$this->options['format'] = strtolower(Yii::app()->locale->dateFormat);
 			}
 		} 
 		
@@ -65,7 +65,7 @@ class DatePickerControl extends CInputWidget
 	 */
 	public function registerClientScript($id)
 	{
-		$baseScriptUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('ven.eternicode.bootstrap-datepicker'));
+		$baseScriptUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('ven.ikirux.yii-bootstrap3-datepicker.assets'));
 
 		$cs = Yii::app()->getClientScript();
 		$cs->registerCssFile($baseScriptUrl . '/css/datepicker3.css');
