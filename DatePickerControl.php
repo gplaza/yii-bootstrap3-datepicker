@@ -50,12 +50,6 @@ class DatePickerControl extends CInputWidget
 	{
 		list($name, $id) = $this->resolveNameID();
 
-		if ($this->hasModel()) {
-			echo BsHtml::activeTextFieldControlGroup($this->model, $this->attribute, $this->htmlOptions);
-		} else {
-			echo BsHtml::activeTextFieldControlGroup($name, $this->value, $this->htmlOptions);
-		}
-
 		$this->registerClientScript($id);
 	}
 
