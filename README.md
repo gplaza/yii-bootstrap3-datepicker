@@ -18,6 +18,33 @@ Usage
 ]); ?>
 ```
 
+Advance Example
+---------------
+
+```
+<?php $this->widget('vendor.ikirux.yii-bootstrap3-datepicker.DatePickerControl', [
+    'model' => $model,
+    'attribute' => 'birth_date',
+    'type' => 'embedded',
+    'methods' => [
+        [
+            'name' => 'setDates',
+            'arg1' => "'08/01/2014','09/01/2014','15/01/2014'",
+        ],
+    ],
+    'triggerEvents' => [
+        'changeDate',
+    ],
+    'options' => [
+        'placement' => 'right',
+        'autoclose' => true,
+        'multidate' => true,
+    ],
+]); ?>
+```
+
+
+
 Resources
 ---------
 
