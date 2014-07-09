@@ -83,8 +83,9 @@ class DatePickerControl extends CInputWidget
 		} else { // default 'text'
 			echo CHtml::tag('div', ['class' => 'form-group'], false, false);
 			echo CHtml::activeLabel($this->model, $this->attribute);
-			echo CHtml::tag('div', [], false, true);
+			echo CHtml::tag('div', [], false, false);
 			echo CHtml::activeTextField($this->model, $this->attribute, ['class' => 'form-control']);
+			echo CHtml::closeTag('div');
 			echo CHtml::closeTag('div');
 			$this->registerClientScript($id);
 		}
