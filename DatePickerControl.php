@@ -68,23 +68,22 @@ class DatePickerControl extends CInputWidget
 	 */
 	public function run()
 	{
-		list($name, $id) = $this->resolveNameID();
-		
 		$required = false;
     	
-    		foreach ($this->model->getValidators($this->attribute) as $validator)
-    			if ($validator instanceof CRequiredValidator && in_array($this->attribute, $validator->attributes)) {
-    				$required = true;
-    				break;
-    			}
+    	foreach ($this->model->getValidators($this->attribute) as $validator) {
+    		if ($validator instanceof CRequiredValidator && in_array($this->attribute, $validator->attributes)) {
+    			$required = true;
+    			break;
+    		}
+    	}
 
 		if ($this->type == 'embedded') {
-			$idEmbeddedContainer = $id . '_container';
+			$idEmbeddedContainer = $this->id . '_container';
 			echo CHtml::tag('div', ['id' => $idEmbeddedContainer], false, false);
 			echo CHtml::activeHiddenField($this->model, $this->attribute);
 			$this->events['changeDate'] = 'js:function(e)  {
                 dates = $("#' . $idEmbeddedContainer . '").datepicker(\'getFormattedDate\', \'' . $this->options['format'] . '\');
-                $("#' . $id . '").val(dates);
+                $("#' . $this->id . '").val(dates);
             }';
    			echo CHtml::closeTag('div');
 			$this->registerClientScript($idEmbeddedContainer);
@@ -93,11 +92,16 @@ class DatePickerControl extends CInputWidget
 			echo CHtml::tag('div', ['class' => 'form-group ' . $classErrorDiv], false, false);
 			echo CHtml::activeLabel($this->model, $this->attribute, ['class' => 'control-label', 'required' => $required]);
 			echo CHtml::tag('div', [], false, false);
-			echo CHtml::activeTextField($this->model, $this->attribute, ['class' => 'form-control', 'placeholder' => $this->model->getAttributeLabel($this->attribute)]);
+			echo CHtml::activeTextField($this->model, $this->attribute, [
+				'class' => 'form-control', 
+				'placeholder' => $this->model->getAttributeLabel($this->attribute),
+				'name' => $this->name,
+				'id' => $this->id,
+			]);
 			if (!empty($classErrorDiv)) { echo CHtml::tag('p', ['class' => 'help-block'], $error); }
 			echo CHtml::closeTag('div');
 			echo CHtml::closeTag('div');
-			$this->registerClientScript($id);
+			$this->registerClientScript($this->id);
 		}
 	}
 
