@@ -23,6 +23,8 @@ class DatePickerControl extends CInputWidget
 	 */
 	public $type = 'text';
 
+
+
 	/**
 	 * @var string[] triggers the specifics events after the date picker is load
 	 */
@@ -68,6 +70,8 @@ class DatePickerControl extends CInputWidget
 	 */
 	public function run()
 	{
+		list($name, $id) = $this->resolveNameID();
+
 		$required = false;
     	
     	foreach ($this->model->getValidators($this->attribute) as $validator) {
@@ -83,7 +87,7 @@ class DatePickerControl extends CInputWidget
 			echo CHtml::activeHiddenField($this->model, $this->attribute);
 			$this->events['changeDate'] = 'js:function(e)  {
                 dates = $("#' . $idEmbeddedContainer . '").datepicker(\'getFormattedDate\', \'' . $this->options['format'] . '\');
-                $("#' . $this->id . '").val(dates);
+                $("#' . $id . '").val(dates);
             }';
    			echo CHtml::closeTag('div');
 			$this->registerClientScript($idEmbeddedContainer);
@@ -94,14 +98,14 @@ class DatePickerControl extends CInputWidget
 			echo CHtml::tag('div', [], false, false);
 			echo CHtml::activeTextField($this->model, $this->attribute, [
 				'class' => 'form-control', 
-				'placeholder' => $this->model->getAttributeLabel($this->attribute),
-				'name' => $this->name,
-				'id' => $this->id,
+				'placeholder' => isset($this->htmlOptions['placeholder']) ? $this->htmlOptions['placeholder'] : $this->model->getAttributeLabel($this->attribute),
+				'name' => $name,
+				'id' => $id,
 			]);
 			if (!empty($classErrorDiv)) { echo CHtml::tag('p', ['class' => 'help-block'], $error); }
 			echo CHtml::closeTag('div');
 			echo CHtml::closeTag('div');
-			$this->registerClientScript($this->id);
+			$this->registerClientScript($id);
 		}
 	}
 
