@@ -56,7 +56,7 @@ class DatePickerControl extends CInputWidget
 			if (!Yii::app()->locale->dateFormat) {
 				$this->options['format'] = 'yyyy/mm/dd';
 			} else {
-				$this->options['format'] = strtolower(Yii::app()->locale->dateFormat);
+				$this->options['format'] = 'dd/mm/yyyy';
 			}
 		} 
 		
