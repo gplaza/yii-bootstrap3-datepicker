@@ -23,8 +23,6 @@ class DatePickerControl extends CInputWidget
 	 */
 	public $type = 'text';
 
-
-
 	/**
 	 * @var string[] triggers the specifics events after the date picker is load
 	 */
@@ -53,11 +51,7 @@ class DatePickerControl extends CInputWidget
 		}
 
 		if (!isset($this->options['format'])) {
-			if (!Yii::app()->locale->dateFormat) {
-				$this->options['format'] = 'yyyy/mm/dd';
-			} else {
-				$this->options['format'] = 'dd/mm/yyyy';
-			}
+			$this->options['format'] = 'dd/mm/yyyy';
 		} 
 		
 		if (!isset($this->options['weekStart'])) {
