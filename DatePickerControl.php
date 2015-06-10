@@ -79,10 +79,15 @@ class DatePickerControl extends CInputWidget
 			$idEmbeddedContainer = $this->id . '_container';
 			echo CHtml::tag('div', ['id' => $idEmbeddedContainer], false, false);
 			echo CHtml::activeHiddenField($this->model, $this->attribute);
-			$this->events['changeDate'] = 'js:function(e)  {
-                dates = $("#' . $idEmbeddedContainer . '").datepicker(\'getFormattedDate\', \'' . $this->options['format'] . '\');
-                $("#' . $id . '").val(dates);
-            }';
+			if (array_key_exists('changeDate', $this->events))
+                		$this->events['changeDate'] = substr($this->events['changeDate'], 0, -1);
+            		else
+                		$this->events['changeDate'] = 'js:function(e)  {';
+
+            		$this->events['changeDate'] .= 'dates = $("#' . $idEmbeddedContainer . '").datepicker(\'getFormattedDate\', \'' . $this->options['format'] . '\');';
+            		$this->events['changeDate'] .= '$("#' . $id . '").val(dates);';
+            		$this->events['changeDate'] .= '}';
+            		
    			echo CHtml::closeTag('div');
 			$this->registerClientScript($idEmbeddedContainer);
 		} else { // default 'text'
